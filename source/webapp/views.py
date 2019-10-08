@@ -86,3 +86,21 @@ class CommentsView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.order_by('-created_at')
         return context
+
+
+class CommentCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = CommentForm()
+        return render(request, 'comment_create.html', context={'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            comment = Comment.objects.create(
+                author=form.cleaned_data['author'],
+                text=form.cleaned_data['text'],
+                article=form.cleaned_data['article']
+            )
+            return redirect('comments')
+        else:
+            return render(request, 'comment_create.html', context={'form': form})
