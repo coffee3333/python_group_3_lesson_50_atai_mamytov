@@ -12,9 +12,8 @@
         <div>{{ comment.text }}</div>
         <p>Author: {{ comment.author }}</p>
         <p>Created at: {{ comment.created_at }}
-{% comment %}        <p><a href="{% url 'article_view' article.pk %}">More...</a></p>{% endcomment %}
         <p><a href="{% url 'comment_edit' comment.pk %}">Edit</a></p>
-{% comment %}        <p><a href="{% url "article_delete" article.pk %}">Delete</a></p>{% endcomment %}
+        <p><a href="{% url "comment_delete" comment.pk %}">Delete</a></p>
         <hr/>
     {% endfor %}
 {% endblock %}

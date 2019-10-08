@@ -129,3 +129,14 @@ class CommentUpdateView(View):
             return redirect('comments')
         else:
             return render(request, 'comment_update.html', context={'form': form, 'comment': comment})
+
+
+class CommentDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, pk=kwargs.get('pk'))
+        return render(request, 'delete_comment.html', context={'comment': comment})
+
+    def post(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, pk=kwargs.get('pk'))
+        comment.delete()
+        return redirect('comments')
