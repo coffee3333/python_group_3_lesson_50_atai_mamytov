@@ -14,6 +14,7 @@
         <p>Created at: {{ comment.created_at }}
         <p><a href="{% url 'comment_edit' comment.pk %}">Edit</a></p>
         <p><a href="{% url "comment_delete" comment.pk %}">Delete</a></p>
+        <p><a href="{% url 'article_view' comment.article.pk %}">Read Article</a></p>
         <hr/>
     {% endfor %}
 {% endblock %}
