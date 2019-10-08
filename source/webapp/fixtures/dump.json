@@ -1,24 +1,14 @@
 [
 {
   "model": "webapp.article",
-  "pk": 2,
-  "fields": {
-    "title": "Article",
-    "text": "Text",
-    "author": "Me",
-    "created_at": "2019-09-02T14:17:16.759Z",
-    "updated_at": "2019-09-02T14:17:16.759Z"
-  }
-},
-{
-  "model": "webapp.article",
   "pk": 3,
   "fields": {
-    "title": "Title",
-    "text": "Article",
-    "author": "He",
-    "created_at": "2019-09-02T14:02:31.881Z",
-    "updated_at": "2019-09-02T14:02:31.881Z"
+    "title": "Another One",
+    "text": "Another Article",
+    "author": "Me",
+    "created_at": "2019-09-03T14:06:09.002Z",
+    "updated_at": "2019-10-08T08:00:38.826Z",
+    "category": 1
   }
 },
 {
@@ -26,48 +16,58 @@
   "pk": 4,
   "fields": {
     "title": "Article 3",
-    "text": "Text",
-    "author": "She",
-    "created_at": "2019-09-02T14:03:01.078Z",
-    "updated_at": "2019-09-02T14:03:01.078Z"
+    "text": "Article 3",
+    "author": "He",
+    "created_at": "2019-09-03T14:09:48.915Z",
+    "updated_at": "2019-09-03T14:09:48.915Z",
+    "category": null
   }
 },
 {
   "model": "webapp.article",
   "pk": 5,
   "fields": {
-    "title": "Even More",
-    "text": "Contraptions",
-    "author": "Me",
-    "created_at": "2019-09-02T14:07:47.457Z",
-    "updated_at": "2019-09-02T14:07:47.458Z"
+    "title": "Title",
+    "text": "Text",
+    "author": "Author",
+    "created_at": "2019-09-03T14:44:14.453Z",
+    "updated_at": "2019-10-08T07:59:38.539Z",
+    "category": 1
   }
 },
 {
   "model": "webapp.article",
   "pk": 6,
   "fields": {
-    "title": "Test",
-    "text": "Test Article",
-    "author": "He",
-    "created_at": "2019-09-02T14:43:41.147Z",
-    "updated_at": "2019-09-02T14:43:41.148Z"
+    "title": "dfgsdf",
+    "text": "sdfgsdfg",
+    "author": "dsfgsdfg",
+    "created_at": "2019-10-08T08:00:50.357Z",
+    "updated_at": "2019-10-08T08:00:50.357Z",
+    "category": 1
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 1,
+  "fields": {
+    "name": "some"
   }
 },
 {
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$150000$X2bzO8xKoXBJ$HC6jgQ+pxKt/8FSbiiv2kbcAv+Lt7B0ez95f7Titw60=",
-    "last_login": "2019-09-02T14:36:36Z",
+    "password": "pbkdf2_sha256$150000$rETxGUggP9m6$1+XpTSlJd0TUOGy4a5vygINOKbNt4VBXluA1qSdpgYY=",
+    "last_login": "2019-10-08T07:27:07.642Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "\u0410\u0434\u043c\u0438\u043d",
-    "last_name": "\u0410\u0434\u043c\u0438\u043d\u044b\u0447",
-    "email": "admin@admin.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2019-09-02T14:35:44Z",
+    "date_joined": "2019-09-03T14:37:10.646Z",
     "groups": [],
     "user_permissions": []
   }
