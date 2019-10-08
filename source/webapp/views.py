@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView
+from django.views import View
+from django.views.generic import TemplateView
+
 from webapp.forms import ArticleForm
 from webapp.models import Article
-
 
 
 class IndexView(TemplateView):
@@ -19,68 +20,61 @@ class ArticleView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article_pk = self.kwargs.get('pk')
+        article_pk = kwargs.get('pk')
         context['article'] = get_object_or_404(Article, pk=article_pk)
         return context
 
 
-
-def article_create_view(request, *args, **kwargs):
-    if request.method == 'GET':
+class ArticleCreateView(View):
+    def get(self, request, *args, **kwargs):
         form = ArticleForm()
         return render(request, 'create.html', context={'form': form})
-    elif request.method == 'POST':
+
+    def post(self, request, *args, **kwargs):
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = Article.objects.create(
                 title=form.cleaned_data['title'],
                 author=form.cleaned_data['author'],
-                text=form.cleaned_data['text']
+                text=form.cleaned_data['text'],
+                category=form.cleaned_data['category']
             )
             return redirect('article_view', pk=article.pk)
         else:
             return render(request, 'create.html', context={'form': form})
 
 
-def article_update_view(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    if request.method == 'GET':
-        return render(request, 'update.html', context={'article': article})
-    elif request.method == 'POST':
-        article.title = request.POST.get('title')
-        article.author = request.POST.get('author')
-        article.text = request.POST.get('text')
+class ArticleUpdateView(View):
+    def get(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, pk=kwargs.get('pk'))
+        form = ArticleForm(data={
+            'title': article.title,
+            'author': article.author,
+            'text': article.text,
+            'category': article.category_id
+        })
+        return render(request, 'update.html', context={'form': form, 'article': article})
 
-        errors = {}
-        if not article.title:
-            errors['title'] = 'Title should not be empty!'
-        elif len(article.title) > 200:
-            errors['title'] = 'Title should be 200 symbols or less!'
-
-        if not article.author:
-            errors['author'] = 'Author should not be empty!'
-        elif len(article.author) > 40:
-            errors['author'] = 'Author should be 40 symbols or less!'
-
-        if not article.text:
-            errors['text'] = 'Text should not be empty!'
-        elif len(article.text) > 3000:
-            errors['text'] = 'Text should be 3000 symbols or less!'
-
-        if len(errors) > 0:
-            return render(request, 'update.html', context={
-                'errors': errors,
-                'article': article
-            })
-
-        article.save()
-        return redirect('article_view', pk=article.pk)
+    def post(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, pk=kwargs.get('pk'))
+        form = ArticleForm(data=request.POST)
+        if form.is_valid():
+            article.title = form.cleaned_data['title']
+            article.author = form.cleaned_data['author']
+            article.text = form.cleaned_data['text']
+            article.category = form.cleaned_data['category']
+            article.save()
+            return redirect('article_view', pk=article.pk)
+        else:
+            return render(request, 'update.html', context={'form': form, 'article': article})
 
 
-def article_delete_view(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    if request.method == 'GET':
+class ArticleDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, pk=kwargs.get('pk'))
         return render(request, 'delete.html', context={'article': article})
-    elif request.method == 'POST':
+
+    def post(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, pk=kwargs.get('pk'))
         article.delete()
         return redirect('index')

@@ -1,72 +1,31 @@
-body {
-    background: lightcyan;
-    color: #222222;
-    font-family: Arial, sans-serif;
-    margin-top: 60px;
+body{
+font-family: 'Raleway', sans-serif;
 }
-
-h1 {
-    text-align: center;
+.header{
+	background-color: #5bbc2e;
+	font-size: 13px;
+	font-weight: 600;
 }
-
-.container {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
+footer{
+	padding-top: 30px;
+	background-color: #141414;
+	height: 80px;
 }
-
-.navbar {
-    display: block;
-    background: #6a7dff;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    font-size: 0;
-    box-sizing: border-box;
-    padding: 7px 30px;
+footer p{
+	color: #e0e0e0;
+	font-size: 12px;
+	font-weight: 600;
 }
-
-.menu {
-    font-size: 16px;
-    line-height: 1;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    color: #fffee8;
+body .for_info {
+	margin-bottom: 250px;
+	margin-top: 30px;
 }
-
-.menu li {
-    display: inline-block;
+.entertainment {
+    background-color: red;
 }
-
-.menu a {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-    padding: 5px 15px;
+.car {
+    background-color: blue;
 }
-
-.menu a:hover {
-    color: #ffc122;
-    text-decoration: underline;
-}
-
-.pre {
-    white-space: pre-wrap;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.form-error {
-   color: red;
-   font-size: 12px;
-   margin: 5px 0 0 0
-}
-
-.field-error {
-   border: solid 1px red;
-   box-shadow: red 0 0 3px;
+.food {
+    background-color: green;
 }
